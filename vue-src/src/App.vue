@@ -12,7 +12,7 @@
                      @click.native="menuSelect(item.index)"
                      :link="item.linkUrl">
           <img slot="icon"
-               :src="item.imgSrc">
+               src="../static/img/tabbar/more.png">
           <span slot="label">{{item.name}}</span></tabbar-item>
       </tabbar>
     </view-box>
@@ -34,8 +34,8 @@ export default {
       isShowBack: false,
       menuIndex: 0,
       menuList: [
-        { index: 0, name: '主页', imgSrc: '../../static/img/tabbar/more.png', linkUrl: '/' },
-        { index: 1, name: '功能', imgSrc: '../../static/img/tabbar/more.png', linkUrl: '/Func' }
+        { index: 0, name: '主页', imgSrc: '../static/img/tabbar/more.png', linkUrl: '/' },
+        { index: 1, name: '功能', imgSrc: '../static/img/tabbar/more.png', linkUrl: '/Func' }
       ]
     }
   },

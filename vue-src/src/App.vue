@@ -35,7 +35,7 @@ export default {
       menuIndex: 0,
       menuList: [
         { index: 0, name: '主页', imgSrc: '../../static/img/tabbar/more.png', linkUrl: '/' },
-        { index: 1, name: '功能', imgSrc: '../../static/img/tabbar/more.png', linkUrl: '/func' }
+        { index: 1, name: '功能', imgSrc: '../../static/img/tabbar/more.png', linkUrl: '/Func' }
       ]
     }
   },
@@ -57,6 +57,7 @@ export default {
       this.headerName = '主页'
       this.$router.push('/')
       this.menuIndex = 0
+      this.isShowBack = false
     }
   }
 }

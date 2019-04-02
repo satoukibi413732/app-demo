@@ -1,12 +1,13 @@
 <template>
   <div>
-    <group-title>4 columns</group-title>
+    <group-title>手机API展示</group-title>
     <grid :show-lr-borders="false">
-      <grid-item :label="123"
-                 v-for="i in 4"
-                 :key="i">
+      <grid-item :label="item.label"
+                 v-for="item in funcList"
+                 :key="item.label"
+                 :link="item.linkUrl">
         <img slot="icon"
-             src="">
+             src="../../static/img/func.png">
       </grid-item>
     </grid>
   </div>
@@ -19,6 +20,14 @@ export default {
     Grid,
     GridItem,
     GroupTitle
+  },
+  data () {
+    return {
+      funcList: [{
+        label: '电池状态',
+        linkUrl: '/Func/Battery'
+      }]
+    }
   }
 }
 </script>

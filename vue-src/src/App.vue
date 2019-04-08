@@ -1,63 +1,36 @@
 <template>
-  <div id="app">
-    <view-box>
-      <x-header :left-options="{showBack: isShowBack,preventGoBack: true}"
-                @on-click-back="goHome()">
-        {{headerName}}
-      </x-header>
-      <router-view />
-      <tabbar v-model="menuIndex">
-        <tabbar-item v-for="item in menuList"
-                     :key="item.index"
-                     @click.native="menuSelect(item.index)"
-                     :link="item.linkUrl">
-          <img slot="icon"
-               src="../static/img/tabbar/more.png">
-          <span slot="label">{{item.name}}</span></tabbar-item>
-      </tabbar>
-    </view-box>
+  <div>
+    <x-header>
+      <span>overwrite-left</span>
+      <x-icon slot="overwrite-left"
+              type="navicon"
+              size="35"
+              style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
+    </x-header>
+    <drawer width="200px;"
+            :show.sync="drawerVisibility">
+      <div slot="drawer">
+        <!-- 菜单内容 -->
+      </div>
+      <!-- rourer-view 作为默认插槽内容 -->
+      <div>
+        <router-view></router-view>
+      </div>
+    </drawer>
   </div>
 </template>
 
 <script>
-import { Tabbar, TabbarItem, ViewBox, XHeader } from 'vux'
+import { Drawer, XHeader } from 'vux'
+
 export default {
   components: {
-    Tabbar,
-    TabbarItem,
-    ViewBox,
+    Drawer,
     XHeader
   },
   data () {
     return {
-      headerName: '主页',
-      isShowBack: false,
-      menuIndex: 0,
-      menuList: [
-        { index: 0, name: '主页', imgSrc: '../static/img/tabbar/more.png', linkUrl: '/' },
-        { index: 1, name: '功能', imgSrc: '../static/img/tabbar/more.png', linkUrl: '/Func' }
-      ]
-    }
-  },
-  methods: {
-    menuSelect (key) {
-      console.log(key)
-      switch (key) {
-        case 0:
-          this.headerName = '主页'
-          this.isShowBack = false
-          break
-        case 1:
-          this.headerName = '功能'
-          this.isShowBack = true
-          break
-      }
-    },
-    goHome () {
-      this.headerName = '主页'
-      this.$router.push('/')
-      this.menuIndex = 0
-      this.isShowBack = false
+      drawerVisibility: false
     }
   }
 }

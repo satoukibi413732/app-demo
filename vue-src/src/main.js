@@ -16,12 +16,19 @@ import {
   XButton
 } from 'vux'
 
+// 引用API文件
+import apiserver from './service/apiserver.js'
+
 Vue.component('view-box', ViewBox)
 Vue.component('cell', Cell)
 Vue.component('cell-box', CellBox)
 Vue.component('group', Group)
 Vue.component('x-input', XInput)
 Vue.component('x-button', XButton)
+Vue.config.productionTip = false
+
+// 将API方法绑定到全局
+Vue.prototype.$apiserver = apiserver
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

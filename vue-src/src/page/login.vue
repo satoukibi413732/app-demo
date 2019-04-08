@@ -23,7 +23,8 @@
       </x-input> -->
     </group>
     <div class="form-btn">
-      <x-button type="primary">登录</x-button>
+      <x-button type="primary"
+                @click.native="login()">登录</x-button>
     </div>
   </view-box>
 </template>
@@ -36,6 +37,13 @@ export default {
         userName: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    login () {
+      this.$router.push({ path: '/' })
+      let test = this.$apiserver.getTest()
+      console.log(test)
     }
   }
 }

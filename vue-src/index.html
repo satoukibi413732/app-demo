@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="telephone=yes">
   <meta name="msapplication-tap-highlight" content="no">
-  <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+  <!-- 强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览。 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+  <!--  WebApp全屏模式 隐藏地址栏。 -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!--  禁止百度转码显示。 -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
   <title>vue-src</title>
 </head>
 

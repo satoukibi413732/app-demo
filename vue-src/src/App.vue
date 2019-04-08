@@ -1,36 +1,71 @@
 <template>
-  <div>
-    <x-header>
-      <span>overwrite-left</span>
-      <x-icon slot="overwrite-left"
-              type="navicon"
-              size="35"
-              style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-    </x-header>
-    <drawer width="200px;"
-            :show.sync="drawerVisibility">
+  <div id="app">
+    <div v-transfer-dom>
+      <loading v-model="isLoading"></loading>
+    </div>
+    <drawer :show.sync="drawerShow"
+            show-mode="push"
+            width="200px;"
+            :drawer-style="{'background-color':'#35495e', width: '200px'}">
       <div slot="drawer">
-        <!-- 菜单内容 -->
+        <DrawerList @drawerClose="switchDrawer()"></DrawerList>
       </div>
-      <!-- rourer-view 作为默认插槽内容 -->
-      <div>
-        <router-view></router-view>
-      </div>
+      <!-- main content -->
+      <view-box ref="viewBox">
+        <x-header>
+          <span>主页头部标题</span>
+          <x-icon slot="overwrite-left"
+                  type="navicon"
+                  size="35"
+                  style="fill:#fff;position:relative;top:-8px;left:-3px;"
+                  @click.native="switchDrawer()"></x-icon>
+        </x-header>
+        <transition>
+          <router-view class="router-view"></router-view>
+        </transition>
+        <tabbar>
+          <tabbar-item link="/"
+                       selected>
+            <span slot="label">主页</span>
+          </tabbar-item>
+          <tabbar-item link="/">
+            <span slot="label">主页</span>
+          </tabbar-item>
+        </tabbar>
+      </view-box>
     </drawer>
   </div>
 </template>
 
 <script>
-import { Drawer, XHeader } from 'vux'
-
+import { Drawer, XHeader, ViewBox, TransferDom, Loading, Tabbar, TabbarItem } from 'vux'
+import DrawerList from '@/components/DrawerList'
 export default {
+  directives: {
+    TransferDom
+  },
   components: {
     Drawer,
-    XHeader
+    XHeader,
+    ViewBox,
+    DrawerList,
+    TransferDom,
+    Loading,
+    Tabbar,
+    TabbarItem
   },
   data () {
     return {
-      drawerVisibility: false
+      drawerShow: false,
+      isLoading: false
+    }
+  },
+
+  methods: {
+
+    switchDrawer () {
+      this.drawerShow = !this.drawerShow
+      console.log('左侧菜单打开状态' + this.drawerShow)
     }
   }
 }
@@ -39,7 +74,10 @@ export default {
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+.router-view {
   width: 100%;
-  height: 100vh;
+  top: 46px;
 }
 </style>

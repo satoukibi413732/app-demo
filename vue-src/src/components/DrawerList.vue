@@ -10,14 +10,8 @@
 </template>
 
 <script>
-import { Cell, Group, CellBox } from 'vux'
 
 export default {
-  components: {
-    Cell,
-    Group,
-    CellBox
-  },
   data () {
     return {
     }

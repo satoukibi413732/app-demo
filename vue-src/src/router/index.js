@@ -1,13 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
 
 Vue.use(Router)
 
-export default new Router({
+// const requireAuth = (to, from, next) => {
+//   // 验证登录
+//   if (sessionStorage.getItem('userName') === null) {
+//     next({
+//       path: '/login',
+//       query: {
+//         redirect: to.fullPath
+//       }
+//     })
+//   } else {
+//     next()
+//   }
+// }
+
+let router = new Router({
   routes: [{
+    path: '/login',
+    component: resolve => require(['@/page/login'], resolve)
+  }, {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: resolve => require(['@/page/index'], resolve),
+    // beforeEnter: requireAuth,
+    children: [{
+      path: '/Home',
+      component: resolve => require(['@/components/Home'], resolve)
+      // beforeEnter: requireAuth,
+    }]
   }]
 })
+
+export default router

@@ -3,14 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuex from 'vuex'
+import store from './store' // 引入store
 import '../src/assets/styles/reset.css' // 引用公共样式
 Vue.config.productionTip = false
-Vue.use(Vuex)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },

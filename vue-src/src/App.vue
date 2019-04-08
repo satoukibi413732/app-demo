@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div v-transfer-dom>
-      <loading v-model="isLoading"></loading>
+      <loading v-model="$store.state.loading"></loading>
     </div>
     <drawer :show.sync="drawerShow"
             show-mode="push"
@@ -56,13 +56,10 @@ export default {
   },
   data () {
     return {
-      drawerShow: false,
-      isLoading: false
+      drawerShow: false
     }
   },
-
   methods: {
-
     switchDrawer () {
       this.drawerShow = !this.drawerShow
       console.log('左侧菜单打开状态' + this.drawerShow)

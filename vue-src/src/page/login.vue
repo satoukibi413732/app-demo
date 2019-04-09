@@ -41,9 +41,10 @@ export default {
   },
   methods: {
     login () {
-      this.$router.push({ path: '/' })
-      let test = this.$apiserver.getTest()
-      console.log(test)
+      // this.$router.push({ path: '/' })
+      this.$apiserver.getTest().then(res => {
+        console.log(res)
+      })
     }
   }
 }

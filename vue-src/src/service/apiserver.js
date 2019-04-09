@@ -1,15 +1,14 @@
 import axios from 'axios'
-// import {HOST_BUILD, COURT_CODE} from '@/constants'
-const instance = (method) => {
+const instance = method => {
   return axios.create({
-    baseURL: '@/mock/db.json',
+    baseURL: 'http://localhost:8086' /* 本地json假数据测试地址 */,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   })
 }
 
-const catchNetwork = (e) => {
+const catchNetwork = e => {
   if (e && e.code) {
     switch (e.code) {
       case 401:
@@ -56,9 +55,7 @@ const fetchPost = (url, data, method) => {
         data: data,
         method: method || 'post'
       })
-      .then(res => {
-
-      })
+      .then(res => {})
       .catch(e => {
         reject(e)
         catchNetwork(e)
@@ -69,10 +66,10 @@ const fetchPost = (url, data, method) => {
 export default {
   catchNetwork,
   getTest: () => {
-    return fetchGet('/account')
+    return fetchGet('/account', null, 'get')
   },
 
-  postTest: (data) => {
+  postTest: data => {
     return fetchPost('/account')
   }
 }
